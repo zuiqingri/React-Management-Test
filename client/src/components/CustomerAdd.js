@@ -19,12 +19,24 @@ class CustomerAdd extends React.Component{
             .then((response)=>{
                 console.log(response.data);
             })
+        this.setState(
+            {
+                file: null,
+                userName:'',
+                birthday:'',
+                gender:'',
+                job:'',
+                fileName:''
+            }
+        )    
+        window.location.reload();
     }
 
     handleFileChange=(e)=>{
         this.setState({
-            file:e.target.file[0],
-            fileName:e.target.value
+            //file: e.target.file[0],
+            file: e.target.files[0],
+            fileName: e.target.value
         })
     }
 
@@ -55,7 +67,7 @@ class CustomerAdd extends React.Component{
          return(
              <form onSubmit={this.handleFormSubmit}>
                  <h1>Append Customer</h1>
-                 Profile Image: <input type="file" name="file" file={this.state.file} value={this.state.fileName} onChange={this.handleFileChange}/><br/>
+                 Profile Image: <input type="file" name="image" file={this.state.file} value={this.state.fileName} onChange={this.handleFileChange}/><br/>
                  Name:<input type="text" name="userName" value={this.state.userName} onChange={this.handleValueChange}/><br/>
                  Birthday:<input type="text" name="birthday" value={this.state.birthday} onChange={this.handleValueChange}/><br/>
                  Gender:<input type="text" name="gender" value={this.state.gender} onChange={this.handleValueChange}/><br/>
